@@ -1,3 +1,9 @@
+# NetBeans
+.dep.inc
+Makefile
 Debug/
+nbproject/
+
+# VS
 *.vcxproj
 *.vcxproj.filters
