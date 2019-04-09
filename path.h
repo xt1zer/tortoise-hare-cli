@@ -17,6 +17,7 @@ public:
     const int get_tortoise_position() const;
     const int get_hare_position() const;
     const int get_occupation(const int &) const;
+    void set_steps(const int &, const int &);
 
     Path();
 };

@@ -25,6 +25,7 @@ void Step::set_occupation(const int & p) {
 }
 
 const int Step::get_occupation() const {
-    return occupation;
+    if (occupation >= empty && occupation <= snack)
+        return occupation;
     return -1;
 }
