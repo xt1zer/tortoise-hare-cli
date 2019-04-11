@@ -19,7 +19,7 @@ void Step::set_occupation(const int & p) {
         break;
 
     default:
-        cout << "ERROR!" << endl;
+        std::cout << "ERROR!" << std::endl;
         break;
     }
 }

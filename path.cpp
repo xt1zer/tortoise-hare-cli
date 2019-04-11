@@ -1,6 +1,10 @@
 #include "path.h"
+using std::cout;
+using std::endl;
 
 Path::Path() {
+    tortoise_position = hare_position = 0;
+    
     for (int k(1); k < 70; ++k) {
         if (k % 10)
             steps[k].set_occupation(0);
@@ -34,7 +38,7 @@ void Path::print_path() const {
             break;
 
         case 3:
-            cout << " ";
+            cout << "@";
             break;
 
         default:
@@ -44,7 +48,7 @@ void Path::print_path() const {
     }
 }
 
-const int Path::move(const int & newTorPos, const int & newHarePos) {
+const bool Path::move(const int & newTorPos, const int & newHarePos) {
     if (tortoise_position + newTorPos >= 70) {
         steps[tortoise_position].set_occupation(0);
         steps[69].set_occupation(1);
@@ -52,7 +56,7 @@ const int Path::move(const int & newTorPos, const int & newHarePos) {
         print_path();
 
         cout << endl << "T Wins!" << endl;
-        return 1;
+        return true;
     }
 
     if (hare_position + newHarePos >= 70) {
@@ -62,7 +66,7 @@ const int Path::move(const int & newTorPos, const int & newHarePos) {
         print_path();
 
         cout << endl << "H Wins!" << endl;
-        return 1;
+        return true;
     }
 
     steps[tortoise_position].set_occupation(0);
@@ -86,7 +90,7 @@ const int Path::move(const int & newTorPos, const int & newHarePos) {
         hare_position = 0;
     }
 
-    return 0;
+    return false;
 }
 
 const int Path::get_tortoise_position() const { return tortoise_position; }
