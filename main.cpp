@@ -1,9 +1,8 @@
-#include <ctime>
-#include "race.h"
+#include "game.h"
 using namespace std;
 
 int main(){
-    Race race;
+    Game game;
     
     return 0;
 }

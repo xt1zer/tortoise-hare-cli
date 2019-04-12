@@ -2,13 +2,6 @@
 #include "random.h"
 
 Race::Race() {
-    std::cout << "BANG! And they're off!\t\t\t\t\t\t\tH / T\n";
-    
-    srand(unsigned(time(NULL)));
-    
-    path.print_path();
-    std::cout << "| " << hare.get_energy() << "/" << tortoise.get_energy() << std::endl;
-
     bool raceStatus(false);
 
     while (true) {

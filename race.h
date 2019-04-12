@@ -6,15 +6,16 @@
 
 class Race {
 private:
-
-
-public:
     
-    Race();
+    bool over;
     
-    Path path;
     Hare hare;
     Tortoise tortoise;
+
+public:
+    Path path;
+    
+    Race();
     
     const bool update();
 
