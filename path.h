@@ -7,8 +7,6 @@ class Path {
 private:
 
     Step steps[70];
-    int tortoise_position;
-    int hare_position;
 
 public:
     

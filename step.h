@@ -1,19 +1,19 @@
 #pragma once
 #include <iostream>
-#include "occupation.h"
 
 class Step {
 
 private:
 
-    Occupation occupation;
+    char occupation;
+    bool snack;
 
 public:
 
     Step();
 
-    void has_snack();
-    void set_snack();
+    const bool has_snack() const;
+    void set_snack(const bool &);
     void set_empty();
     void set_occupation(const int &);
     const int get_occupation() const;

@@ -1,25 +1,25 @@
 #include "step.h"
 
+Step::Step() : occupation('.'), snack(false) {}
+
+const bool Step::has_snack() const {
+    return snack;
+}
+
+void Step::set_snack(const bool & s) { snack = s; }
+
 void Step::set_occupation(const int & p) {
     switch (p) {
-    case 0:
-        occupation = empty;
-        break;
-
     case 1:
-        occupation = tortoise;
+        occupation = 'T';
         break;
 
     case 2:
-        occupation = hare;
+        occupation = 'H';
         break;
 
     case 3:
-        occupation = snack;
-        break;
-
-    case 4:
-        occupation = together;
+        occupation = '#';
         break;
 
     default:
@@ -28,8 +28,6 @@ void Step::set_occupation(const int & p) {
     }
 }
 
-const int Step::get_occupation() const {
-    if (occupation >= empty && occupation <= together)
-        return occupation;
-    return -1;
-}
+const int Step::get_occupation() const { return occupation; }
+
+void Step::set_empty() { occupation = '.'; }

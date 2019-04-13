@@ -3,13 +3,8 @@ using std::cout;
 using std::endl;
 
 Path::Path() {
-    tortoise_position = hare_position = 0;
-    
-    for (int k(1); k < 70; ++k) {
-        if (k % 10)
-            steps[k].set_occupation(0);
-        else
-            steps[k].set_occupation(3);
+    for (int k(9); k < 70; k += 10) {
+        steps[k].set_snack(true);
     }
 }
 

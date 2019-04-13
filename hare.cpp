@@ -1,6 +1,11 @@
 #include "hare.h"
 
-Hare::Hare() { set_energy(20); down = false; avatar = 'H'; }
+Hare::Hare() { 
+    energy = 20;
+    down = false;
+    avatar = 'H';
+    position = 0;
+}
 
 void Hare::bit() {
     set_energy(-3);

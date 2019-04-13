@@ -1,6 +1,11 @@
 #include "tortoise.h"
 
-Tortoise::Tortoise() { set_energy(20); down = false; avatar = 'T'; }
+Tortoise::Tortoise() { 
+    energy = 20;
+    down = false;
+    avatar = 'T';
+    position = 0;
+}
 
 const int Tortoise::movement(const int & possibility) {
     if (down) {
