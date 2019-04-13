@@ -15,8 +15,11 @@ private:
 public:
     Path path;
     
-    Race();
+    Race(const int &);
     
+    const bool is_over() const;
+    void print() const;
     const bool update();
+    void winner() const;
 
 };

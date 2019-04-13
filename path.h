@@ -14,7 +14,7 @@ public:
     
     Path();
 
-    void print_path() const;
+    void print() const;
     const bool move(const int &, const int &);
     const int get_tortoise_position() const;
     const int get_hare_position() const;

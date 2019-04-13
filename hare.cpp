@@ -1,18 +1,20 @@
 #include "hare.h"
 
-Hare::Hare() :energy(20), down(false) {}
+Hare::Hare() { set_energy(20); down = false; avatar = 'H'; }
 
-const bool Hare::is_down() const { return down; }
+void Hare::bit() {
+    set_energy(-3);
+}
 
 const int Hare::movement(const int & possibility) {
-    if(down) {
-        revive();
+    if (down) {
+        get_medical_help();
         down = false;
     }
     else {
         if (possibility >= 0 && possibility <= 5) {
-            set_energy(-2);
-            if (energy <= 0)
+            set_energy(energy - 2);
+            if (get_energy() <= 0)
                 down = true;
             return 3;
         }
@@ -21,8 +23,8 @@ const int Hare::movement(const int & possibility) {
             return -6;
 
         if (possibility > 7 && possibility <= 10) {
-            set_energy(-1);
-            if (energy <= 0)
+            set_energy(energy - 1);
+            if (get_energy() <= 0)
                 down = true;
             return 1;
         }
@@ -30,20 +32,3 @@ const int Hare::movement(const int & possibility) {
 
     return 0;
 }
-
-const int Hare::get_energy() const { return energy; }
-
-void Hare::set_energy(const int & c) {
-    if (energy + c <= 0){
-        energy = 0;
-        down = true;
-    }
-    else if (energy + c >= 20)
-        energy = 20;
-    else
-        energy += c;
-}
-
-void Hare::restore_energy() { energy = 20; }
-
-void Hare::revive() { energy = 10; down = false; }

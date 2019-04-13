@@ -1,7 +1,10 @@
 #include "race.h"
 #include "random.h"
 
-Race::Race() {
+Race::Race(const int & width) {
+    path.print();
+    std::cout << "| " << hare.get_energy() << "/" << tortoise.get_energy() << std::endl;
+
     bool raceStatus(false);
 
     while (true) {
@@ -9,7 +12,7 @@ Race::Race() {
         if (raceStatus)
             break;
         
-        path.print_path();
+        path.print();
         std::cout << "| " << hare.get_energy() << "/" << tortoise.get_energy() << std::endl;
 
     }
@@ -22,15 +25,15 @@ const bool Race::update() {
     const int hareMovement(hare.movement(rate));
 
     if (path.get_hare_position() == path.get_tortoise_position())
-        hare.set_energy(-3);
+        hare.bit();
 
     if (path.get_occupation(path.get_tortoise_position() + tortoiseMovement) == 3) {
-        tortoise.restore_energy();
+        tortoise.get_snack();
         path.set_steps(path.get_tortoise_position(), 0);
     }
 
     if (path.get_occupation(path.get_hare_position() + hareMovement) == 3) {
-        hare.restore_energy();
+        hare.get_snack();
         path.set_steps(path.get_hare_position(), 0);
     }
     

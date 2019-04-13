@@ -22,7 +22,7 @@ void Path::set_steps(const int & pos, const int & value) {
         steps[pos].set_occupation(value);
 }
 
-void Path::print_path() const {
+void Path::print() const {
     for (int k(0); k < 70; ++k) {
         switch (steps[k].get_occupation()) {
         case 0:
@@ -41,6 +41,10 @@ void Path::print_path() const {
             cout << "@";
             break;
 
+        case 4:
+            cout << "#";
+            break;
+
         default:
             cout << "e";
             break;
@@ -53,7 +57,7 @@ const bool Path::move(const int & newTorPos, const int & newHarePos) {
         steps[tortoise_position].set_occupation(0);
         steps[69].set_occupation(1);
         tortoise_position = 69;
-        print_path();
+        print();
 
         cout << endl << "T Wins!" << endl;
         return true;
@@ -63,7 +67,7 @@ const bool Path::move(const int & newTorPos, const int & newHarePos) {
         steps[hare_position].set_occupation(0);
         steps[69].set_occupation(2);
         hare_position = 69;
-        print_path();
+        print();
 
         cout << endl << "H Wins!" << endl;
         return true;

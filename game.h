@@ -3,11 +3,9 @@
 class Game {
 private:
     
-    int width;
+    int width = 70;
     
 public:
-    
-    Game();
     
     void start() const;
 };

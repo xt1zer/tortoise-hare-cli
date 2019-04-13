@@ -1,12 +1,10 @@
 #include "tortoise.h"
 
-Tortoise::Tortoise() : energy(20), down(false) {}
-
-const bool Tortoise::is_down() const { return down; }
+Tortoise::Tortoise() { set_energy(20); down = false; avatar = 'T'; }
 
 const int Tortoise::movement(const int & possibility) {
     if (down) {
-        revive();
+        get_medical_help();
         down = false;
     }
     else {
@@ -30,20 +28,3 @@ const int Tortoise::movement(const int & possibility) {
 
     return 0;
 }
-
-const int Tortoise::get_energy() const { return energy; }
-
-void Tortoise::set_energy(const int & c) {
-    if (energy + c <= 0) {
-        energy = 0;
-        down = true;
-    } 
-    else if (energy + c >= 20)
-        energy = 20;
-    else
-        energy += c;
-}
-
-void Tortoise::restore_energy() { energy = 20; }
-
-void Tortoise::revive() { energy = 10; down = false; }

@@ -18,6 +18,10 @@ void Step::set_occupation(const int & p) {
         occupation = snack;
         break;
 
+    case 4:
+        occupation = together;
+        break;
+
     default:
         std::cout << "ERROR!" << std::endl;
         break;
@@ -25,7 +29,7 @@ void Step::set_occupation(const int & p) {
 }
 
 const int Step::get_occupation() const {
-    if (occupation >= empty && occupation <= snack)
+    if (occupation >= empty && occupation <= together)
         return occupation;
     return -1;
 }
