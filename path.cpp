@@ -1,97 +1,49 @@
+#include <iostream>
 #include "path.h"
-using std::cout;
-using std::endl;
 
 Path::Path() {
-    for (int k(9); k < 70; k += 10) {
+    steps = new Step[width];
+
+    steps[0].set_occupation('#');
+    for (int k(9); k < width; k += 10) {
         steps[k].set_snack(true);
     }
 }
 
-const int Path::get_occupation(const int & s) const {
+Path::~Path() {
+    delete[] steps;
+}
+
+const bool Path::has_snack(int position) const {
+    if (position <= 0) position = 0;
+    if (position >= width - 1) position = width - 1;
+    return steps[position].has_snack();
+}
+
+const char Path::get_occupation(const int & s) const {
     return steps[s].get_occupation();
 }
 
-void Path::set_steps(const int & pos, const int & value) {
-    if (pos >= 0 && pos < 70 && value >= 0 && value < 4)
-        steps[pos].set_occupation(value);
+void Path::set_collision(const int & pos) {
+    steps[pos].set_occupation('#');
+}
+
+void Path::set_empty(int position) {
+    if (position >= width - 1) position = width - 1;
+    steps[position].set_empty();
+}
+
+void Path::set_position(int pos, const char & value) {
+    if (pos <= 0) pos = 0;
+    if (pos >= width - 1) pos = width - 1;
+    steps[pos].set_occupation(value);
 }
 
 void Path::print() const {
-    for (int k(0); k < 70; ++k) {
-        switch (steps[k].get_occupation()) {
-        case 0:
-            cout << ".";
-            break;
-
-        case 1:
-            cout << "T";
-            break;
-
-        case 2:
-            cout << "H";
-            break;
-
-        case 3:
-            cout << "@";
-            break;
-
-        case 4:
-            cout << "#";
-            break;
-
-        default:
-            cout << "e";
-            break;
-        }
+    for (int k(0); k < width; ++k) {
+        if (steps[k].has_snack())
+            std::cout << "@";
+        else
+            std::cout << steps[k].get_occupation();
     }
 }
-
-const bool Path::move(const int & newTorPos, const int & newHarePos) {
-    if (tortoise_position + newTorPos >= 70) {
-        steps[tortoise_position].set_occupation(0);
-        steps[69].set_occupation(1);
-        tortoise_position = 69;
-        print();
-
-        cout << endl << "T Wins!" << endl;
-        return true;
-    }
-
-    if (hare_position + newHarePos >= 70) {
-        steps[hare_position].set_occupation(0);
-        steps[69].set_occupation(2);
-        hare_position = 69;
-        print();
-
-        cout << endl << "H Wins!" << endl;
-        return true;
-    }
-
-    steps[tortoise_position].set_occupation(0);
-    steps[hare_position].set_occupation(0);
-
-    if (tortoise_position + newTorPos > 0) {
-        steps[tortoise_position + newTorPos].set_occupation(1);
-        tortoise_position += newTorPos;
-    }
-    else {
-        steps[0].set_occupation(1);
-        tortoise_position = 0;
-    }
-
-    if (hare_position + newHarePos > 0) {
-        steps[hare_position + newHarePos].set_occupation(2);
-        hare_position += newHarePos;
-    }
-    else {
-        steps[0].set_occupation(2);
-        hare_position = 0;
-    }
-
-    return false;
-}
-
-const int Path::get_tortoise_position() const { return tortoise_position; }
-
-const int Path::get_hare_position() const { return hare_position; }

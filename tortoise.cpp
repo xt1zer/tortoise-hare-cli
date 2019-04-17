@@ -1,13 +1,10 @@
 #include "tortoise.h"
 
-Tortoise::Tortoise() { 
-    energy = 20;
-    down = false;
+Tortoise::Tortoise() {
     avatar = 'T';
-    position = 0;
 }
 
-const int Tortoise::movement(const int & possibility) {
+const int Tortoise::update_position(const int & possibility) {
     if (down) {
         get_medical_help();
         down = false;
@@ -15,8 +12,6 @@ const int Tortoise::movement(const int & possibility) {
     else {
         if (possibility >= 0 && possibility <= 5) {
             set_energy(-2);
-            if (energy <= 0)
-                down = true;
             return 3;
         }
 
@@ -25,10 +20,11 @@ const int Tortoise::movement(const int & possibility) {
 
         if (possibility > 7 && possibility <= 10) {
             set_energy(-1);
-            if (energy <= 0)
-                down = true;
             return 1;
         }
+
+        if (get_energy() <= 0)
+            down = true;
     }
 
     return 0;

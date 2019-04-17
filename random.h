@@ -1,5 +1,4 @@
 #pragma once
-
 #include <iostream>
 
 const int random(const int & max) {

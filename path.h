@@ -1,22 +1,24 @@
 #pragma once
-#include <iostream>
 #include "step.h"
+#include "game.h"
+#include "constants.h"
 
 class Path {
 
 private:
 
-    Step steps[70];
+    Step * steps;
 
 public:
     
     Path();
+    ~Path();
 
     void print() const;
-    const bool move(const int &, const int &);
-    const int get_tortoise_position() const;
-    const int get_hare_position() const;
-    const int get_occupation(const int &) const;
-    void set_steps(const int &, const int &);
+    const bool has_snack(int) const;
+    const char get_occupation(const int &) const;
+    void set_collision(const int &);
+    void set_empty(int);
+    void set_position(int, const char &);
 
 };

@@ -6,15 +6,17 @@ protected:
 
     char avatar;
     bool down;
-    unsigned short int energy;
-    unsigned short int position;
+    short int energy;
+    short int position;
 
 public:
 
+    Contender();
+
     const char get_avatar() const;
-    const unsigned short int get_energy() const;
+    const short int get_energy() const;
     void get_medical_help();
-    const unsigned short int get_position() const;
+    const short int get_position() const;
     void get_snack();
     const bool is_down() const;
     void set_energy(const short int &);

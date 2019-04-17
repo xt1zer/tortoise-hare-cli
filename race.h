@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include "tortoise.h"
 #include "hare.h"
 #include "path.h"
@@ -9,15 +8,14 @@ private:
     
     bool over;
     
+    Path path;
     Hare hare;
     Tortoise tortoise;
 
 public:
-    Path path;
+
+    Race();
     
-    Race(const int &);
-    
-    const bool is_over() const;
     void print() const;
     const bool update();
     void winner() const;

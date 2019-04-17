@@ -10,6 +10,6 @@ public:
     Hare();
 
     void bit();
-    const int movement(const int &);
+    const int update_position(const int &);
 
 };
