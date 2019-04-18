@@ -5,7 +5,7 @@ Race::Race(): over(false) {
     print();
 
     while (!over) {
-        over = update();
+        update();
         print();
     }
 
@@ -17,7 +17,7 @@ void Race::print() const {
     std::cout << "| " << hare.get_energy() << "/" << tortoise.get_energy() << std::endl;
 }
 
-const bool Race::update() {
+void Race::update() {
     int rate(random(10));
     const int tortoiseMovement(tortoise.update_position(rate));
     rate = random(10);
@@ -39,21 +39,24 @@ const bool Race::update() {
         path.set_collision(width - 1);
         tortoise.set_position(width - 1);
         hare.set_position(width - 1);
-        return true;
+        over = true;
+        return;
     }
 
     if (tortoise.get_position() + tortoiseMovement >= width - 1) {
         path.set_position(tortoise.get_position(), '.');
         path.set_position(width - 1, 'T');
         tortoise.set_position(width - 1);
-        return true;
+        over = true;
+        return;
     }
 
     if (hare.get_position() + hareMovement >= width - 1) {
         path.set_position(hare.get_position(), '.');
         path.set_position(width - 1, 'H');
         hare.set_position(width - 1);
-        return true;
+        over = true;
+        return;
     }
 
     path.set_position(tortoise.get_position(), '.');
@@ -82,7 +85,7 @@ const bool Race::update() {
         hare.bit();
     }
 
-    return false;
+    return;
 }
 
 void Race::winner() const {

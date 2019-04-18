@@ -17,7 +17,7 @@ public:
     Race();
     
     void print() const;
-    const bool update();
+    void update();
     void winner() const;
 
 };
