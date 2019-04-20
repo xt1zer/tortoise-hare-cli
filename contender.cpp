@@ -39,8 +39,8 @@ void Contender::set_energy(const short int & value) {
 void Contender::set_position(const short int & value) { 
     if (position + value <= 0)
         position = 0;
-    else if (position + value >= 69)
-        position = 69;
+    else if (position + value >= width - 1)
+        position = width - 1;
     else
         position += value;
 }
