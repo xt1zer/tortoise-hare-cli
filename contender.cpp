@@ -1,4 +1,5 @@
 #include "conteder.h"
+#include "constants.h"
 
 Contender::Contender() {
     avatar = 0;
